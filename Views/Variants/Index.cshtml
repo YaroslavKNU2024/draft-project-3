@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CoronavirusBase.Variant>
+
+@{
+    ViewData["Title"] = "Штами за категорією";
+}
+
+<h1>Штами вірусів @ViewBag.VirusName</h1>
+
+<p>
+    @Html.ActionLink("Додати новий штам", "Create", new {variantId = @ViewBag.VirusId})
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VariantName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VariantOrigin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDiscovered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdVirusNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VariantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VariantOrigin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDiscovered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdVirusNavigation.VirusName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdVariant">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdVariant">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdVariant">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
